@@ -1,0 +1,66 @@
+h1 {
+  font-size: 40px;
+}
+
+h4 {
+  font-size: 23px;
+}
+
+p {
+  margin: 0;
+  font-weight: 500;
+}
+
+.heading-title {
+  min-height: 100px;
+}
+
+@keyframes slide {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-100%);
+  }
+}
+
+@keyframes reverse-slide {
+  from {
+    transform: translateX(-100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+.logos {
+  overflow: hidden;
+  position: relative;
+  display: flex;
+}
+
+.logos:hover .logos-slide {
+  animation-play-state: paused;
+}
+
+.logos:hover .logos-slide-reverse {
+  animation-play-state: paused;
+}
+
+.logos-slide {
+  display: inline-block;
+  animation: 25s slide infinite linear;
+}
+
+.logos-slide-reverse {
+  display: inline-block;
+  animation: 25s reverse-slide infinite linear;
+}
+
+.epic-card {
+  min-width: 260px;
+}
+
+.big-card {
+  min-width: 500px;
+}
