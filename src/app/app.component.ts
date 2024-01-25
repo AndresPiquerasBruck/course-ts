@@ -21,13 +21,18 @@ export class AppComponent {
 
   mage1 = new Mage('Varita tocapelotitas', 5)
   mage2 = new Necromancer('Varita malardita', 4, 'morite gordo')
+  monk = new Monk('Pingo')
 
   thought1 = new PoliticalThought()
+
+  classInterface1 = new classInterface1('Class with interface')
 
   constructor() {
     this.functionInsideClass(1, 111);
     this.mage1.battleCry();
+    this.mage1.castSpellBookSpell(2);
     this.mage2.battleCry();
+    this.monk.castSpellBookSpell(1);
     this.thought1.thoughtThought();
   }
 }
@@ -56,15 +61,31 @@ enum Enum {
   ENUM3 = 99
 }
 
-class Mage {
+interface spellBook {
+  spellBookTitle: string;
+  spellBookSpells: string[];
+  spellBookPages: number;
+
+  castSpellBookSpell(index: number): void;
+}
+
+class Mage implements spellBook{
   protected staff: string
   protected dmg: number
   static basicAttack: string
+
+  spellBookTitle = "Vanilla mage Spellbook"
+  spellBookSpells = ["Hocus Pockus", "Alakazam", "Articulo 155"]
+  spellBookPages = 420;
 
   constructor(staff: string, dmg: number){
     this.staff = staff
     this.dmg = dmg
     if (!Mage.basicAttack) { Mage.basicAttack = "nieh" }
+  }
+
+  castSpellBookSpell(index: number): void {
+    console.log(" DIE!!!!! " + this.spellBookSpells[index])
   }
 
   battleCry() {
@@ -73,7 +94,7 @@ class Mage {
   
 }
 
-class Necromancer extends Mage {
+class Necromancer extends Mage implements spellBook {
   private readonly darkSpell: string
 
   constructor(staff:string, dmg:number, darkSpell: string) {
@@ -83,6 +104,22 @@ class Necromancer extends Mage {
 
   override battleCry() {
     console.log("I'm a dark mage and my staff: " + this.staff + " makes " + this.dmg + " damage! My dark spell is: " + this.darkSpell)
+  }
+}
+
+class Monk implements spellBook {
+  name: string
+
+  spellBookTitle = "Holy Book Or Something"
+  spellBookSpells = ["Ying Yang cho", "Merengue merengue"]
+  spellBookPages = 10;
+
+  constructor(name: string) {
+    this.name = name
+  }
+
+  castSpellBookSpell(index: number): void {
+    console.log("Unalive, my brother... " + this.spellBookSpells[index])
   }
 }
 
@@ -104,3 +141,27 @@ class PoliticalThought extends Thought {
   }
 }
 
+interface Interface1 {
+  name: string
+  method1(): void 
+}
+
+interface Interface2 {
+  method2(): void
+}
+
+class classInterface1 implements Interface1, Interface2 {
+  name: string
+
+  constructor(name: string) {
+    this.name = name;
+  }
+
+  method1(): void {
+    console.log("Interface test method1: " + this.name)
+  }
+
+  method2(): void {
+    console.log("Interface test method2: " + this.name)
+  }
+}
