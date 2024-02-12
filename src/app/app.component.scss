@@ -1,3 +1,8 @@
+body {
+  height: 100vh;
+  background: linear-gradient(to bottom, #ffffff, #ffffff, #ffffff, #2e8555);
+}
+
 h1 {
   font-size: 50px;
 }
@@ -13,6 +18,8 @@ p {
 
 .heading-title {
   min-height: 125px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.5); /* Add a box shadow for the 3D effect */
+  margin-bottom: 20px;
 }
 
 @keyframes slide {
@@ -49,12 +56,12 @@ p {
 
 .logos-slide {
   display: inline-block;
-  animation: 45s slide infinite linear;
+  animation: 85s slide infinite linear;
 }
 
 .logos-slide-reverse {
   display: inline-block;
-  animation: 45s reverse-slide infinite linear;
+  animation: 85s reverse-slide infinite linear;
 }
 
 .epic-card {

@@ -31,6 +31,13 @@ export class AppComponent {
   monk1 = new Monk('Amador Rivas');
   prova1 = new decorated('decorated1');
 
+  casting() {
+    let value: any = "Hello, TypeScript!";
+    let length: number = (value as string).length;
+    
+    console.log(length); // Output: 18
+  }
+
   constructor() {
     const randomNumber = Math.round(Math.random());
     this.thought1.thoughtThought();
@@ -45,6 +52,8 @@ export class AppComponent {
       this.randomGuy1 = new randomGuy('qwer', this.numberArray);
     }
     this.randomGuy1.randomAttack(3);
+    console.log(readOnlyPerson);
+    printMileage(null);
   }
 }
 
@@ -244,4 +253,21 @@ class decorated {
   method3() {
     console.log('Method 3');
   }
+}
+
+type Person = {
+  name: string;
+  age: number;
+  address: string;
+};
+
+type ReadonlyPerson = {
+  readonly [K in keyof Person]: Person[K];
+};
+
+const readOnlyPerson: ReadonlyPerson = { name: "John", age: 25, address: "123 Main St" };
+// Properties of readOnlyPerson are now readonly
+
+function printMileage(mileage: number | null | undefined) {
+  console.log(`Mileage: ${mileage ?? 'Not Available'}`);
 }
